@@ -18,7 +18,11 @@ library(car)
 
 Read the data. Then fit a linear model of the form:
 
+<<<<<<< HEAD
 ![ TR = beta\_1 + beta\_2A + beta\_3P + epsilon ](https://latex.codecogs.com/png.latex?%20TR%20%3D%20beta_1%20%2B%20beta_2A%20%2B%20beta_3P%20%2B%20epsilon%20 " TR = beta_1 + beta_2A + beta_3P + epsilon ")
+=======
+![ \\\\text{TR} = \\\\beta\_1 + \\\\beta\_2\\\\text{A} + \\\\beta\_3\\\\text{P} + \\\\epsilon ](https://latex.codecogs.com/png.latex?%20%5C%5Ctext%7BTR%7D%20%3D%20%5C%5Cbeta_1%20%2B%20%5C%5Cbeta_2%5C%5Ctext%7BA%7D%20%2B%20%5C%5Cbeta_3%5C%5Ctext%7BP%7D%20%2B%20%5C%5Cepsilon%20 " \\text{TR} = \\beta_1 + \\beta_2\\text{A} + \\beta_3\\text{P} + \\epsilon ")
+>>>>>>> da2af9790c51485e48f1b02dad69dbb05cab873a
 
 ``` r
 burger <- read_xlsx("chainStore 1.xlsx")
