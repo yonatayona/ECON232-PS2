@@ -32,8 +32,7 @@ summary(burger_lm)
 
 The fitted model is given by:
 
-$$ TR = 104.7855 + 2.9843A - 6.6419P $$
-We can also compute the summary measures manually and check if these coincide with values provided by the `summary()` function.
+$$ TR = 104.7855 + 2.9843A - 6.6419P $$ We can also compute the summary measures manually and check if these coincide with values provided by the `summary()` function.
 
 ```{r}
 # Define components
@@ -124,7 +123,7 @@ library(readxl)
 
 ```{r}
 con <- read_excel("macroeconomics data set.xlsx")
-View(con)
+head(con)
 ```
 
 Consider the distributed lag model of consumption:
