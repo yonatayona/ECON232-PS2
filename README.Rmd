@@ -1,5 +1,5 @@
 ---
-title: "R Notebook"
+title: "ECON 232 - PS2"
 output: html_notebook
 ---
 
