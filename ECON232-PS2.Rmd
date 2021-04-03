@@ -1,0 +1,201 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+### 0. Preliminaries
+
+Load required packages.
+
+```{r}
+library(readxl)
+library(car)
+```
+
+------------------------------------------------------------------------
+
+### 1. Burger chain
+
+Read the data. Then fit a linear model of the form:
+
+$$
+\text{TR} = \beta_1 + \beta_2\text{A} + \beta_3\text{P} + \epsilon
+$$
+
+```{r}
+burger <- read_xlsx("chainStore 1.xlsx")
+
+# Fit a linear model
+burger_lm <- lm(TR ~ A + P, data = burger)
+
+# Prints summary measures
+summary(burger_lm)
+```
+
+The fitted model is given by:
+
+$$
+TR = 104.7855 + 2.9843A - 6.6419P
+$$\
+
+We can also compute the summary measures manually and check if these coincide with values provided by the `summary()` function.
+
+```{r}
+# Define components
+n <- nrow(burger)
+j <- 1
+k <- 2
+
+y_mean <- mean(burger$TR)
+
+SSR <- sum(residuals(burger_lm)^2)
+TSS <- sum((burger$TR - y_mean)^2)
+ESS <- sum((fitted(burger_lm) - y_mean)^2)
+
+
+# Compute the measures
+SER <- sqrt(1/(n-k-1) * SSR)
+Rsq <- 1 - (SSR/TSS)
+adj_Rsq <- 1 - (n-1)/(n-k-1) * SSR/TSS
+
+c("SER" = SER,
+  "Rsq" = Rsq,
+  "adj_Rsq" = adj_Rsq)
+```
+
+We see that the manually computed values coincide with the `summary()` output.
+
+\
+Next, we want to know the overall significance of the model. The `summary()` function already reports an F-statistic and its corresponding p-value. The null hypothesis belonging to this F-test is that all of the coefficients in the model (except for the intercept) are zero.
+
+The `linearHypothesis()` function performs a Wald Test on a specified hypothesis. We test the following null hypothesis, and check if the result coincides with what `summary()` reports.
+
+$$
+\begin{aligned}
+& H_0: \beta_2 = 0, \ \beta_3 = 0 \\
+& H_1: \text{There is a } \beta_j \neq 0 \text{ for at least one } j
+\end{aligned}
+$$
+
+```{r}
+# Wald Test
+linearHypothesis(burger_lm, c("P = 0", "A = 0"))
+```
+
+The F-statistic for this particular joint hypothesis is `159.83` and the corresponding p-value is `2.2e-16`. This is enough to **reject the null hypothesis** for any practical level of significance.
+
+------------------------------------------------------------------------
+
+### 2. Investment data
+
+```{r}
+inv <- read_excel("investment.xlsx")
+head(inv)
+```
+
+Estimate an investment function:
+
+$$
+\text{RealInv} = \beta_1 + \beta_2\text{Trend} + \beta_3\text{RealGNP} + \beta_4\text{Interest} + \beta_5\text{Infl} + \epsilon
+$$
+
+```{r}
+inv_lm <- lm(RealInv ~ Trend + RealGNP + Interest + Infl,
+             data = inv)
+
+summary(inv_lm)
+```
+
+The fitted model is given by:
+
+$$
+RealInv = -6.2197 - 0.1609Trend + 0.0991RealGNP + 0.0202Interest - 0.0117Infl
+$$
+
+It might be appropriate to formulate the regression in terms of real interest rather than to treat interest rate and inflation rate separately. If investors were only interested in the real interest rate, equal increases in interest rate and inflation rate would have no effect on investment.\
+\
+To test this, perform a Wald test with the following null hypothesis:
+
+$$
+H_0:\ \beta_4 + \beta_5 = 0
+$$
+
+```{r}
+linearHypothesis(model = inv_lm,
+                 hypothesis.matrix = c("Trend = 0",
+                                       "RealGNP = 1",
+                                       "Interest + Infl = 0"))
+```
+
+The F-statistic for this particular joint hypothesis is `159.83` and the corresponding p-value is `2.2e-16`. This is enough to **reject the null hypothesis** for any practical level of significance.
+
+------------------------------------------------------------------------
+
+### 3. Macro data
+
+```{r}
+library(AER)
+library(dynlm)
+library(readxl)
+```
+
+```{r}
+con <- read_excel("macroeconomics data set.xlsx")
+View(con)
+```
+
+Consider the distributed lag model of consumption:
+
+$$
+\text{log}(C_t) = \beta_1 + \beta_2\text{log}(Y_t) + \beta_3\text{log}(C_{t-1}) + \epsilon
+$$
+
+where
+
+$$
+\begin{aligned}
+C_t &= \text{real consumption expenditure}, \\
+Y_t &= \text{real disposable personal income}, \\
+\delta &= \frac{\beta_2}{1 - \beta_3} \qquad \text{(long-run MPC)}
+\end{aligned}
+$$
+
+Fit the model using the macro data.
+
+```{r}
+# Convert macro data into time series
+con_ts <- ts(data = con[, 3:ncol(con)],
+             start = c(1950, 1),
+             end = c(2000, 4),
+             frequency = 4)
+
+# Fit a linear model
+con_lm <- dynlm(formula = log(REALCONS) ~ log(REALDPI) + log(L(REALCONS)),
+                data = con_ts,
+                start = c(1950, 1),
+                end = c(2000, 4))
+
+summary(con_lm)
+```
+
+Then use the Wald Test to confirm if the long-run MPC $\delta$ is equal to 1. We test the following hypothesis:
+
+$$
+\begin{aligned}
+H_0:\ \delta = 1
+&\implies \frac{\beta_2}{1 - \beta_3} = 1
+\\
+&\implies \beta_2 + \beta_3 = 1
+\end{aligned}
+$$
+
+```{r}
+linearHypothesis(model = con_lm,
+                 hypothesis.matrix = c("log(REALDPI) + log(L(REALCONS)) = 1"))
+```
+
+```{r}
+linearHypothesis(model = con_lm,
+                 hypothesis.matrix = c("log(REALDPI) = 0",
+                                       "log(L(REALCONS)) = 1"))
+```
