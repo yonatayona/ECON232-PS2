@@ -9,7 +9,7 @@ output:
 
 Load required packages.
 
-```{r}
+```{r echo = TRUE}
 library(readxl)
 library(car)
 ```
@@ -20,7 +20,7 @@ library(car)
 
 Read the data. Then fit a linear model of the form:
 
-$$ \\text{TR} = \\beta_1 + \\beta_2\\text{A} + \\beta_3\\text{P} + \\epsilon $$
+$$ TR = beta_1 + beta_2A + beta_3P + epsilon $$
 
 ```{r}
 burger <- read_xlsx("chainStore 1.xlsx")

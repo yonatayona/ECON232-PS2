@@ -18,11 +18,7 @@ library(car)
 
 Read the data. Then fit a linear model of the form:
 
-<<<<<<< HEAD
-![ \\\\text{TR} = \\\\beta\_1 + \\\\beta\_2\\\\text{A} + \\\\beta\_3\\\\text{P} + \\\\epsilon ](https://latex.codecogs.com/png.latex?%20%5C%5Ctext%7BTR%7D%20%3D%20%5C%5Cbeta_1%20%2B%20%5C%5Cbeta_2%5C%5Ctext%7BA%7D%20%2B%20%5C%5Cbeta_3%5C%5Ctext%7BP%7D%20%2B%20%5C%5Cepsilon%20 " \\text{TR} = \\beta_1 + \\beta_2\\text{A} + \\beta_3\\text{P} + \\epsilon ")
-=======
-$$ \\\\text{TR} = \\\\beta\_1 + \\\\beta\_2\\\\text{A} + \\\\beta\_3\\\\text{P} + \\\\epsilon $$
->>>>>>> 9e17f9528c87be6157070f656082191f9fe21090
+![ TR = beta\_1 + beta\_2A + beta\_3P + epsilon ](https://latex.codecogs.com/png.latex?%20TR%20%3D%20beta_1%20%2B%20beta_2A%20%2B%20beta_3P%20%2B%20epsilon%20 " TR = beta_1 + beta_2A + beta_3P + epsilon ")
 
 ``` r
 burger <- read_xlsx("chainStore 1.xlsx")
@@ -56,12 +52,8 @@ summary(burger_lm)
 
 The fitted model is given by:
 
-<<<<<<< HEAD
 ![ TR = 104.7855 + 2.9843A - 6.6419P ](https://latex.codecogs.com/png.latex?%20TR%20%3D%20104.7855%20%2B%202.9843A%20-%206.6419P%20 " TR = 104.7855 + 2.9843A - 6.6419P ")
 
-=======
-*T**R* = 104.7855 + 2.9843*A* − 6.6419*P*
->>>>>>> 9e17f9528c87be6157070f656082191f9fe21090
 We can also compute the summary measures manually and check if these
 coincide with values provided by the `summary()` function.
 
@@ -104,11 +96,7 @@ The `linearHypothesis()` function performs a Wald Test on a specified
 hypothesis. We test the following null hypothesis, and check if the
 result coincides with what `summary()` reports.
 
-<<<<<<< HEAD
 ![ \\\\begin{aligned} & H\_0: \\\\beta\_2 = 0,  \\\\beta\_3 = 0 \\\\ & H\_1: \\\\text{There is a } \\\\beta\_j \\\\neq 0 \\\\text{ for at least one } j \\\\end{aligned} ](https://latex.codecogs.com/png.latex?%20%5C%5Cbegin%7Baligned%7D%20%26%20H_0%3A%20%5C%5Cbeta_2%20%3D%200%2C%20%C2%A0%5C%5Cbeta_3%20%3D%200%20%5C%5C%20%26%20H_1%3A%20%5C%5Ctext%7BThere%20is%20a%20%7D%20%5C%5Cbeta_j%20%5C%5Cneq%200%20%5C%5Ctext%7B%20for%20at%20least%20one%20%7D%20j%20%5C%5Cend%7Baligned%7D%20 " \\begin{aligned} & H_0: \\beta_2 = 0,  \\beta_3 = 0 \\ & H_1: \\text{There is a } \\beta_j \\neq 0 \\text{ for at least one } j \\end{aligned} ")
-=======
-$$ \\\\begin{aligned} & H\_0: \\\\beta\_2 = 0,  \\\\beta\_3 = 0 \\\\ & H\_1: \\\\text{There is a } \\\\beta\_j \\\\neq 0 \\\\text{ for at least one } j \\\\end{aligned} $$
->>>>>>> 9e17f9528c87be6157070f656082191f9fe21090
 
 ``` r
 # Wald Test
@@ -155,11 +143,7 @@ head(inv)
 
 Estimate an investment function:
 
-<<<<<<< HEAD
 ![ \\\\text{RealInv} = \\\\beta\_1 + \\\\beta\_2\\\\text{Trend} + \\\\beta\_3\\\\text{RealGNP} + \\\\beta\_4\\\\text{Interest} + \\\\beta\_5\\\\text{Infl} + \\\\epsilon ](https://latex.codecogs.com/png.latex?%20%5C%5Ctext%7BRealInv%7D%20%3D%20%5C%5Cbeta_1%20%2B%20%5C%5Cbeta_2%5C%5Ctext%7BTrend%7D%20%2B%20%5C%5Cbeta_3%5C%5Ctext%7BRealGNP%7D%20%2B%20%5C%5Cbeta_4%5C%5Ctext%7BInterest%7D%20%2B%20%5C%5Cbeta_5%5C%5Ctext%7BInfl%7D%20%2B%20%5C%5Cepsilon%20 " \\text{RealInv} = \\beta_1 + \\beta_2\\text{Trend} + \\beta_3\\text{RealGNP} + \\beta_4\\text{Interest} + \\beta_5\\text{Infl} + \\epsilon ")
-=======
-$$ \\\\text{RealInv} = \\\\beta\_1 + \\\\beta\_2\\\\text{Trend} + \\\\beta\_3\\\\text{RealGNP} + \\\\beta\_4\\\\text{Interest} + \\\\beta\_5\\\\text{Infl} + \\\\epsilon $$
->>>>>>> 9e17f9528c87be6157070f656082191f9fe21090
 
 ``` r
 inv_lm <- lm(RealInv ~ Trend + RealGNP + Interest + Infl,
@@ -192,11 +176,7 @@ summary(inv_lm)
 
 The fitted model is given by:
 
-<<<<<<< HEAD
 ![ RealInv = -6.2197 - 0.1609Trend + 0.0991RealGNP + 0.0202Interest - 0.0117Infl ](https://latex.codecogs.com/png.latex?%20RealInv%20%3D%20-6.2197%20-%200.1609Trend%20%2B%200.0991RealGNP%20%2B%200.0202Interest%20-%200.0117Infl%20 " RealInv = -6.2197 - 0.1609Trend + 0.0991RealGNP + 0.0202Interest - 0.0117Infl ")
-=======
-*R**e**a**l**I**n**v* =  − 6.2197 − 0.1609*T**r**e**n**d* + 0.0991*R**e**a**l**G**N**P* + 0.0202*I**n**t**e**r**e**s**t* − 0.0117*I**n**f**l*
->>>>>>> 9e17f9528c87be6157070f656082191f9fe21090
 
 It might be appropriate to formulate the regression in terms of real
 interest rather than to treat interest rate and inflation rate
@@ -206,11 +186,7 @@ on investment.
 
 To test this, perform a Wald test with the following null hypothesis:
 
-<<<<<<< HEAD
 ![ H\_0: \\\\beta\_4 + \\\\beta\_5 = 0 ](https://latex.codecogs.com/png.latex?%20H_0%3A%C2%A0%5C%5Cbeta_4%20%2B%20%5C%5Cbeta_5%20%3D%200%20 " H_0: \\beta_4 + \\beta_5 = 0 ")
-=======
-$$ H\_0: \\\\beta\_4 + \\\\beta\_5 = 0 $$
->>>>>>> 9e17f9528c87be6157070f656082191f9fe21090
 
 ``` r
 linearHypothesis(model = inv_lm,
@@ -285,19 +261,11 @@ head(con)
 
 Consider the distributed lag model of consumption:
 
-<<<<<<< HEAD
 ![ \\\\text{log}(C\_t) = \\\\beta\_1 + \\\\beta\_2\\\\text{log}(Y\_t) + \\\\beta\_3\\\\text{log}(C\\\_{t-1}) + \\\\epsilon ](https://latex.codecogs.com/png.latex?%20%5C%5Ctext%7Blog%7D%28C_t%29%20%3D%20%5C%5Cbeta_1%20%2B%20%5C%5Cbeta_2%5C%5Ctext%7Blog%7D%28Y_t%29%20%2B%20%5C%5Cbeta_3%5C%5Ctext%7Blog%7D%28C%5C_%7Bt-1%7D%29%20%2B%20%5C%5Cepsilon%20 " \\text{log}(C_t) = \\beta_1 + \\beta_2\\text{log}(Y_t) + \\beta_3\\text{log}(C\_{t-1}) + \\epsilon ")
 
 where
 
 ![ \\\\begin{aligned} C\_t &= \\\\text{real consumption expenditure}, \\\\ Y\_t &= \\\\text{real disposable personal income}, \\\\ \\\\delta &= \\\\frac{\\\\beta\_2}{1 - \\\\beta\_3} \\\\qquad \\\\text{(long-run MPC)} \\\\end{aligned} ](https://latex.codecogs.com/png.latex?%20%5C%5Cbegin%7Baligned%7D%20C_t%20%26%3D%20%5C%5Ctext%7Breal%20consumption%20expenditure%7D%2C%20%5C%5C%20Y_t%20%26%3D%20%5C%5Ctext%7Breal%20disposable%20personal%20income%7D%2C%20%5C%5C%20%5C%5Cdelta%20%26%3D%20%5C%5Cfrac%7B%5C%5Cbeta_2%7D%7B1%20-%20%5C%5Cbeta_3%7D%20%5C%5Cqquad%20%5C%5Ctext%7B%28long-run%20MPC%29%7D%20%5C%5Cend%7Baligned%7D%20 " \\begin{aligned} C_t &= \\text{real consumption expenditure}, \\ Y_t &= \\text{real disposable personal income}, \\ \\delta &= \\frac{\\beta_2}{1 - \\beta_3} \\qquad \\text{(long-run MPC)} \\end{aligned} ")
-=======
-$$ \\\\text{log}(C\_t) = \\\\beta\_1 + \\\\beta\_2\\\\text{log}(Y\_t) + \\\\beta\_3\\\\text{log}(C\\\_{t-1}) + \\\\epsilon $$
-
-where
-
-$$ \\\\begin{aligned} C\_t &= \\\\text{real consumption expenditure}, \\\\ Y\_t &= \\\\text{real disposable personal income}, \\\\ \\\\delta &= \\\\frac{\\\\beta\_2}{1 - \\\\beta\_3} \\\\qquad \\\\text{(long-run MPC)} \\\\end{aligned} $$
->>>>>>> 9e17f9528c87be6157070f656082191f9fe21090
 
 Fit the model using the macro data.
 
@@ -341,18 +309,11 @@ summary(con_lm)
     ## Multiple R-squared:  0.9997, Adjusted R-squared:  0.9997 
     ## F-statistic: 3.476e+05 on 2 and 200 DF,  p-value: < 2.2e-16
 
-<<<<<<< HEAD
 Then use the Wald Test to confirm if the long-run MPC
 ![\\\\delta](https://latex.codecogs.com/png.latex?%5C%5Cdelta "\\delta")
 is equal to 1. We test the following hypothesis:
 
 ![ \\\\begin{aligned} H\_0: \\\\delta = 1 &\\\\implies \\\\frac{\\\\beta\_2}{1 - \\\\beta\_3} = 1 \\\\ &\\\\implies \\\\beta\_2 + \\\\beta\_3 = 1 \\\\end{aligned} ](https://latex.codecogs.com/png.latex?%20%5C%5Cbegin%7Baligned%7D%20H_0%3A%C2%A0%5C%5Cdelta%20%3D%201%20%26%5C%5Cimplies%20%5C%5Cfrac%7B%5C%5Cbeta_2%7D%7B1%20-%20%5C%5Cbeta_3%7D%20%3D%201%20%5C%5C%20%26%5C%5Cimplies%20%5C%5Cbeta_2%20%2B%20%5C%5Cbeta_3%20%3D%201%20%5C%5Cend%7Baligned%7D%20 " \\begin{aligned} H_0: \\delta = 1 &\\implies \\frac{\\beta_2}{1 - \\beta_3} = 1 \\ &\\implies \\beta_2 + \\beta_3 = 1 \\end{aligned} ")
-=======
-Then use the Wald Test to confirm if the long-run MPC $\\\\delta$ is
-equal to 1. We test the following hypothesis:
-
-$$ \\\\begin{aligned} H\_0: \\\\delta = 1 &\\\\implies \\\\frac{\\\\beta\_2}{1 - \\\\beta\_3} = 1 \\\\ &\\\\implies \\\\beta\_2 + \\\\beta\_3 = 1 \\\\end{aligned} $$
->>>>>>> 9e17f9528c87be6157070f656082191f9fe21090
 
 ``` r
 linearHypothesis(model = con_lm,
